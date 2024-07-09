@@ -1,7 +1,6 @@
 package com.example.user_recyclerview
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewUserFragment : Fragment(), AddUserListener {
+class ViewUserFragment : Fragment() {
 
-    private val userList = mutableListOf<User>()
     private lateinit var addButton: Button
     private lateinit var userRecyclerView: RecyclerView
     private val userAdapter: UserAdapter by lazy {
@@ -26,29 +24,25 @@ class ViewUserFragment : Fragment(), AddUserListener {
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         userRecyclerView.apply {
-            userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = userAdapter
         }
         addButton = view.findViewById(R.id.addButton)
         addButton.setOnClickListener {
             val addUserFragment = AddUserFragment()
-            addUserFragment.setAddUserListener(this@ViewUserFragment)
-            val ft = parentFragmentManager.beginTransaction()
-            ft.replace(R.id.fragment_container_view, addUserFragment)
-            ft.addToBackStack(null)
-            ft.commit()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, addUserFragment)
+                .addToBackStack(null)
+                .commit()
         }
-
         return view
     }
 
-    override fun onUserAdded(user: User) {
-        userList.add(0,user)
-        userAdapter.setUserData(userList)
-        Log.d("USERLIST"," Added : "+userList.size)
+    override fun onResume() {
+        super.onResume()
+        val mainActivity = activity as? MainActivity
+        userAdapter.setUserData(mainActivity?.userList ?: emptyList())
     }
+
 }
 
-interface AddUserListener {
-    fun onUserAdded(user: User)
-}

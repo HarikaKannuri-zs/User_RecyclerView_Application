@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/userIdViewText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Id"
-        android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/userIdViewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="User Id"
+            android:inputType="text"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/userNameViewText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Name"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/userIdViewText"
-        android:layout_below="@id/userIdViewText" />
+        <TextView
+            android:id="@+id/userNameViewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userIdViewText"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="User Name"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/userIdViewText" />
 
-    <TextView
-        android:id="@+id/userPhoneViewText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Phone"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/userNameViewText"
-        android:layout_below="@id/userNameViewText" />
-
-
-
+        <TextView
+            android:id="@+id/userPhoneViewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userNameViewText"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="User Phone"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/userNameViewText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
