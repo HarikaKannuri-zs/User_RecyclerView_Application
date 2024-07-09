@@ -11,43 +11,32 @@ import androidx.fragment.app.Fragment
 
 class AddUserFragment : Fragment() {
 
-   private var addUserListener: AddUserListener?= null
-
-
-   fun setAddUserListener(addUserListener: AddUserListener) {
-       this.addUserListener = addUserListener
-   }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_user, container, false)
-
         val userIdEditText: EditText = view.findViewById(R.id.userIdEditText)
         val userNameEditText: EditText = view.findViewById(R.id.userNameEditText)
         val userPhoneEditText: EditText = view.findViewById(R.id.userPhoneEditText)
-        val addButton: Button = view.findViewById(R.id.addButton)
+        val userAddButton: Button = view.findViewById(R.id.userAddButton)
 
-        addButton.setOnClickListener {
+        userAddButton.setOnClickListener {
             val userId = userIdEditText.text.toString()
             val userName = userNameEditText.text.toString()
             val userPhone = userPhoneEditText.text.toString()
 
             if (userId.isNotBlank() && userName.isNotBlank() && userPhone.isNotBlank()) {
                 val user = User(userId, userName, userPhone)
-                addUserListener?.onUserAdded(user)
+                val mainActivity = activity as? MainActivity
+                mainActivity?.userList?.add(user)
+                Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT)
+                    .show()
                 parentFragmentManager.popBackStack()
-                Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT).show()
-
             } else {
                 Toast.makeText(requireContext(), "Enter all the details", Toast.LENGTH_SHORT).show()
             }
-
         }
-
         return view
-
-
     }
 }

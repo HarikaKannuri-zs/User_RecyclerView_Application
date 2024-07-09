@@ -6,39 +6,36 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    private var userList: List<User> = emptyList()
+    private val users = mutableListOf<User>()
 
-    fun setUserData(userList: List<User>) {
-        this.userList = userList
-        notifyDataSetChanged()
+    class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val userNameTextView: TextView = itemView.findViewById(R.id.userNameViewText)
+        val userIdTextView: TextView = itemView.findViewById(R.id.userIdViewText)
+        val userPhoneTextView: TextView = itemView.findViewById(R.id.userPhoneViewText)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
-        return UserViewHolder(view)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        return UserViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = userList[position]
-        holder.bind(user)
+        val currentUser = users[position]
+        holder.userNameTextView.text = currentUser.userName
+        holder.userIdTextView.text = currentUser.id
+        holder.userPhoneTextView.text = currentUser.userPhone
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return users.size
     }
 
-    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val userIdTextView: TextView = itemView.findViewById(R.id.userIdViewText)
-        private val userNameTextView: TextView = itemView.findViewById(R.id.userNameViewText)
-        private val userPhoneTextView: TextView = itemView.findViewById(R.id.userPhoneViewText)
-
-        fun bind(user: User) {
-            userIdTextView.text = "User Id : ${user.id}"
-            userNameTextView.text = "User Name : ${user.userName}"
-            userPhoneTextView.text = "User Phone: ${user.userPhone}"
-        }
+    fun setUserData(newUsers: List<User>) {
+        users.clear()
+        users.addAll(newUsers)
+        notifyDataSetChanged()
     }
 }
