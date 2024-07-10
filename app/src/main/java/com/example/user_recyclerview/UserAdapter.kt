@@ -25,7 +25,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentUser = users[position]
         holder.userNameTextView.text = currentUser.userName
-        holder.userIdTextView.text = currentUser.id
+        holder.userIdTextView.text = currentUser.userId
         holder.userPhoneTextView.text = currentUser.userPhone
     }
 

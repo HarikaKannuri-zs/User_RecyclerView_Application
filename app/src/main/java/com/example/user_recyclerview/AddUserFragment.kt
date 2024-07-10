@@ -28,8 +28,9 @@ class AddUserFragment : Fragment() {
 
             if (userId.isNotBlank() && userName.isNotBlank() && userPhone.isNotBlank()) {
                 val user = User(userId, userName, userPhone)
-                val mainActivity = activity as? MainActivity
-                mainActivity?.userList?.add(user)
+                val userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
+                val userDao = userDatabase.userDao()
+                userDao.insertUser(user)
                 Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT)
                     .show()
                 parentFragmentManager.popBackStack()

@@ -13,6 +13,9 @@ class ViewUserFragment : Fragment() {
 
     private lateinit var addButton: Button
     private lateinit var userRecyclerView: RecyclerView
+
+    private lateinit var userDatabase: UserDatabase
+    private lateinit var userDao: UserDao
     private val userAdapter: UserAdapter by lazy {
         UserAdapter()
     }
@@ -26,6 +29,8 @@ class ViewUserFragment : Fragment() {
         userRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = userAdapter
+            userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
+            userDao = userDatabase.userDao()
         }
         addButton = view.findViewById(R.id.addButton)
         addButton.setOnClickListener {
@@ -37,11 +42,13 @@ class ViewUserFragment : Fragment() {
         }
         return view
     }
-
+    private fun setData(){
+        val users = userDao.getAllUsers()
+        userAdapter.setUserData(users)
+    }
     override fun onResume() {
         super.onResume()
-        val mainActivity = activity as? MainActivity
-        userAdapter.setUserData(mainActivity?.userList ?: emptyList())
+        setData()
     }
 
 }
