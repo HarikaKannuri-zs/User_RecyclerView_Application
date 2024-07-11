@@ -10,16 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ViewUserFragment : Fragment() {
-
     private lateinit var addButton: Button
     private lateinit var userRecyclerView: RecyclerView
-
     private lateinit var userDatabase: UserDatabase
     private lateinit var userDao: UserDao
     private val userAdapter: UserAdapter by lazy {
         UserAdapter()
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,9 +26,9 @@ class ViewUserFragment : Fragment() {
         userRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = userAdapter
-            userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
-            userDao = userDatabase.userDao()
         }
+        userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
+        userDao = userDatabase.userDao()
         addButton = view.findViewById(R.id.addButton)
         addButton.setOnClickListener {
             val addUserFragment = AddUserFragment()
@@ -50,6 +47,5 @@ class ViewUserFragment : Fragment() {
         super.onResume()
         setData()
     }
-
 }
 
