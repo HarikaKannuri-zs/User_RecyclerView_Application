@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.MainActivity
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.UserAdapter
 import com.example.user_recyclerview.model.local.UserDao
 import com.example.user_recyclerview.model.local.UserDatabase
 import com.example.user_recyclerview.view.addUser.AddUserFragment
