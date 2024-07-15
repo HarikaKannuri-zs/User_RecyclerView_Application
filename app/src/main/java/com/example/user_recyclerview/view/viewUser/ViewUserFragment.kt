@@ -1,4 +1,4 @@
-package com.example.user_recyclerview
+package com.example.user_recyclerview.view.viewUser
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,12 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.user_recyclerview.MainActivity
+import com.example.user_recyclerview.R
+import com.example.user_recyclerview.model.local.UserDao
+import com.example.user_recyclerview.model.local.UserDatabase
+import com.example.user_recyclerview.view.addUser.AddUserFragment
+import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
 
 class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button
@@ -39,7 +45,7 @@ class ViewUserFragment : Fragment() {
         }
         return view
     }
-    private fun setData(){
+    private fun setData() {
         val users = userDao.getAllUsers()
         userAdapter.setUserData(users)
     }

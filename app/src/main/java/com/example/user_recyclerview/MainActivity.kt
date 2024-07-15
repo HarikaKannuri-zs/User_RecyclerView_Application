@@ -2,14 +2,19 @@ package com.example.user_recyclerview
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.user_recyclerview.model.RetrofitImplementation
-import com.example.user_recyclerview.model.UserResponse
+import com.example.user_recyclerview.model.remote.RetrofitImplementation
+import com.example.user_recyclerview.model.remote.UserResponse
+import com.example.user_recyclerview.viewmodel.AddUserViewModel
+import com.example.user_recyclerview.viewmodel.ViewUserViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    private val addUserViewModel: AddUserViewModel by viewModels()
+    private val viewUserViewModel: ViewUserViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,5 +45,4 @@ class MainActivity : AppCompatActivity() {
         }
         )
     }
-
 }

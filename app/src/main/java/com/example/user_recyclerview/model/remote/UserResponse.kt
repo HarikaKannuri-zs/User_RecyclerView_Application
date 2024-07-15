@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.model
+package com.example.user_recyclerview.model.remote
 
 data class UserResponse(
     val id: Int,

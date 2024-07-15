@@ -1,4 +1,4 @@
-package com.example.user_recyclerview
+package com.example.user_recyclerview.model.local
 
 import android.content.Context
 import androidx.room.Database

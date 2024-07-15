@@ -1,4 +1,4 @@
-package com.example.user_recyclerview
+package com.example.user_recyclerview.view.addUser
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.user_recyclerview.MainActivity
+import com.example.user_recyclerview.R
+import com.example.user_recyclerview.model.local.User
+import com.example.user_recyclerview.model.local.UserDatabase
 
 class AddUserFragment : Fragment() {
     override fun onCreateView(

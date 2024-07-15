@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.model
+package com.example.user_recyclerview.model.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
