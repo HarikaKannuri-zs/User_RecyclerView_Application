@@ -13,6 +13,7 @@ import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.UserDao
 import com.example.user_recyclerview.model.local.UserDatabase
 import com.example.user_recyclerview.view.addUser.AddUserFragment
+import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
 
 class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button

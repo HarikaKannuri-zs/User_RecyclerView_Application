@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.view.viewUser
+package com.example.user_recyclerview.view.viewUser.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
