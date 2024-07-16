@@ -17,8 +17,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         val userPhoneTextView: TextView = itemView.findViewById(R.id.userPhoneViewText)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
         return UserViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {

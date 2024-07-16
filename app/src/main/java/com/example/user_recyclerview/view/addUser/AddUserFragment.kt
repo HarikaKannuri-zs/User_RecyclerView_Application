@@ -24,13 +24,13 @@ class AddUserFragment : Fragment() {
         val userPhoneEditText: EditText = view.findViewById(R.id.userPhoneEditText)
         val userAddButton: Button = view.findViewById(R.id.userAddButton)
         userAddButton.setOnClickListener {
+
             val userId = userIdEditText.text.toString()
             val userName = userNameEditText.text.toString()
             val userPhone = userPhoneEditText.text.toString()
             if (userId.isNotBlank() && userName.isNotBlank() && userPhone.isNotBlank()) {
                 val user = User(userId, userName, userPhone)
-                val userDatabase =
-                    UserDatabase.getDatabase((activity as MainActivity).applicationContext)
+                val userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
                 val userDao = userDatabase.userDao()
                 userDao.insertUser(user)
                 Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT)
