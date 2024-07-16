@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.MainActivity
@@ -16,6 +17,8 @@ import com.example.user_recyclerview.model.local.UserDatabase
 import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
+import com.example.user_recyclerview.viewmodel.AddUserViewModel
+import com.example.user_recyclerview.viewmodel.ViewUserViewModel
 
 class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button
@@ -23,6 +26,7 @@ class ViewUserFragment : Fragment() {
     private lateinit var userDatabase: UserDatabase
     private lateinit var userDao: UserDao
     private lateinit var postButton: Button
+    private  lateinit var viewUserViewModel: ViewUserViewModel
     private val userAdapter: UserAdapter by lazy {
         UserAdapter()
     }
@@ -31,6 +35,7 @@ class ViewUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewUserViewModel = ViewModelProvider(this@ViewUserFragment).get(ViewUserViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         userRecyclerView.apply {
@@ -56,6 +61,7 @@ class ViewUserFragment : Fragment() {
         }
         return view
     }
+
     private fun setData() {
         val users = userDao.getAllUsers()
         userAdapter.setUserData(users)
