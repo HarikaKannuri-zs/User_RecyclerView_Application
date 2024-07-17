@@ -9,7 +9,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PostRepository(private val apiService: ApiService,private val postDao: PostDao) {
-
     fun fetchPosts(){
         val posts = apiService.showPosts()
         posts.enqueue(object: Callback<List<Posts>> {
@@ -20,17 +19,11 @@ class PostRepository(private val apiService: ApiService,private val postDao: Pos
                      }
                  }
             }
-
-            override fun onFailure(call: Call<List<Posts>>, t: Throwable) {
-
-            }
-
+            override fun onFailure(call: Call<List<Posts>>, t: Throwable) {}
         })
     }
-
     fun observePosts(): LiveData<List<Posts>> = postDao.showPost()
     fun toggleFav(postId: Int) {
        postDao.toggleFav(postId)
     }
-
 }

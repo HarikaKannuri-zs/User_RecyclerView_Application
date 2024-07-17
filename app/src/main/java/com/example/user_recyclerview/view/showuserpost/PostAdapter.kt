@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.userposts.Posts
-import com.example.user_recyclerview.model.remote.userpostdata.UserPosts
 
 class PostAdapter(
     private val context: Context,
@@ -35,7 +34,6 @@ class PostAdapter(
             .load(currentPost.url)
             .into(holder.url)
             holder.like.setImageDrawable(ContextCompat.getDrawable(context, if(currentPost.isFavourite) R.drawable.liked_icon else  R.drawable.unliked_icon ))
-
         holder.like.setOnClickListener {
             onFavClick(currentPost.id)
         }

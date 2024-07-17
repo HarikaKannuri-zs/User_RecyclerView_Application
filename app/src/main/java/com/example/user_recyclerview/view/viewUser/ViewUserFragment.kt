@@ -60,7 +60,6 @@ class ViewUserFragment : Fragment() {
         }
         return view
     }
-
     private fun setData() {
         val users = userDao.getAllUsers()
         userAdapter.setUserData(users)
