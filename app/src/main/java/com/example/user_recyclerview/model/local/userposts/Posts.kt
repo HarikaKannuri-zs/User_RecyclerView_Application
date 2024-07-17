@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Posts(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    var postId: Int,
     var id : Int,
     var title  : String,
     var url : String,

@@ -12,11 +12,14 @@ import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.userposts.Posts
 import com.example.user_recyclerview.model.remote.userpostdata.UserPosts
 
-class PostAdapter:  RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
+class PostAdapter(
+    private val onFavClick: (Int) -> Unit,
+):  RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
     private val posts = mutableListOf<Posts>()
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title : TextView = itemView.findViewById(R.id.postTitleView)
         val url : ImageView = itemView.findViewById(R.id.imageView)
+        val like: ImageView = itemView.findViewById(R.id.favouriteIcon)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val postItemView = LayoutInflater.from(parent.context).inflate(R.layout.item_post,parent,false)
@@ -28,6 +31,9 @@ class PostAdapter:  RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
         Glide.with(holder.itemView.context)
             .load(currentPost.url)
             .into(holder.url)
+        holder.like.setOnClickListener {
+            onFavClick(currentPost.id)
+        }
     }
     override fun getItemCount(): Int {
         return posts.size

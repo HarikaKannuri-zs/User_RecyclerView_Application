@@ -19,6 +19,9 @@ class ShowPostViewModel(
     }
 
     fun observePost(): LiveData<List<Posts>> = postRepository.observePosts()
+    fun toggleFav(postId: Int) {
+        postRepository.toggleFav(postId)
+    }
 
 
 }

@@ -29,5 +29,8 @@ class PostRepository(private val apiService: ApiService,private val postDao: Pos
     }
 
     fun observePosts(): LiveData<List<Posts>> = postDao.showPost()
+    fun toggleFav(postId: Int) {
+       postDao.toggleFav(postId)
+    }
 
 }

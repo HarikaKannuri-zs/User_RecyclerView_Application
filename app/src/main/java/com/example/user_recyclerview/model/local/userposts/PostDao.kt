@@ -22,4 +22,7 @@ interface PostDao {
     @Update
     fun updatePost(posts: Posts)
 
+    @Query("UPDATE Posts SET isFavourite = NOT isFavourite WHERE postId = :postId;")
+    fun toggleFav(postId: Int)
+
 }

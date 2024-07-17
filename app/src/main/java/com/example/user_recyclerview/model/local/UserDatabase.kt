@@ -11,7 +11,7 @@ import com.example.user_recyclerview.model.local.userposts.Posts
 
 @Database(
     entities = [User::class,Posts::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class UserDatabase : RoomDatabase() {
