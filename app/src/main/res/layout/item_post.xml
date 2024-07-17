@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Title : "
@@ -29,11 +29,17 @@
 
             <TextView
                 android:id="@+id/postTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="290dp"
+                android:layout_height="match_parent"
                 android:hint="Title"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/favouriteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/favourite_post_icon" />
         </LinearLayout>
 
         <LinearLayout

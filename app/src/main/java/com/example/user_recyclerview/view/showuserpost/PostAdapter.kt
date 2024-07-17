@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.user_recyclerview.R
+import com.example.user_recyclerview.model.local.userposts.Posts
 import com.example.user_recyclerview.model.remote.userpostdata.UserPosts
 
 class PostAdapter:  RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
-    private val posts = mutableListOf<UserPosts>()
+    private val posts = mutableListOf<Posts>()
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title : TextView = itemView.findViewById(R.id.postTitleView)
         val url : ImageView = itemView.findViewById(R.id.imageView)
@@ -32,7 +33,7 @@ class PostAdapter:  RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
         return posts.size
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun setPostData(newPosts : List<UserPosts>) {
+    fun setPostData(newPosts : List<Posts>) {
         posts.clear()
         posts.addAll(newPosts)
         notifyDataSetChanged()

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.model.local.User
+import com.example.user_recyclerview.model.local.userdata.User
 import com.example.user_recyclerview.viewmodel.AddUserViewModel
 
 class AddUserFragment : Fragment() {

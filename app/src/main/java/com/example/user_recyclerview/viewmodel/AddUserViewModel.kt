@@ -2,7 +2,7 @@ package com.example.user_recyclerview.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.user_recyclerview.model.local.User
+import com.example.user_recyclerview.model.local.userdata.User
 import com.example.user_recyclerview.model.local.UserDatabase
 
 class AddUserViewModel(application: Application) : AndroidViewModel(application) {

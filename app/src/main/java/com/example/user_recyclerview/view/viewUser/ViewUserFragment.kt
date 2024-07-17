@@ -12,12 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.MainActivity
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.model.local.UserDao
+import com.example.user_recyclerview.model.local.userdata.UserDao
 import com.example.user_recyclerview.model.local.UserDatabase
 import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
-import com.example.user_recyclerview.viewmodel.AddUserViewModel
 import com.example.user_recyclerview.viewmodel.ViewUserViewModel
 
 class ViewUserFragment : Fragment() {

@@ -4,13 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.user_recyclerview.model.local.userdata.User
+import com.example.user_recyclerview.model.local.userdata.UserDao
+import com.example.user_recyclerview.model.local.userposts.PostDao
+import com.example.user_recyclerview.model.local.userposts.Posts
 
 @Database(
-    entities = [User::class],
-    version = 1
+    entities = [User::class,Posts::class],
+    version = 2,
+    exportSchema = false
 )
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun postDao(): PostDao
     companion object {
         @Volatile
         private var INSTANCE: UserDatabase? = null
@@ -20,7 +26,8 @@ abstract class UserDatabase : RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java,
                     "User Database"
-                ).allowMainThreadQueries().build()
+                ).allowMainThreadQueries()
+                    .fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

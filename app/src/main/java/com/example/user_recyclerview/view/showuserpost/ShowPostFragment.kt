@@ -10,7 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.R
+import com.example.user_recyclerview.model.local.UserDatabase
+import com.example.user_recyclerview.model.remote.RetrofitImplementation
+import com.example.user_recyclerview.model.repository.PostRepository
 import com.example.user_recyclerview.viewmodel.ShowPostViewModel
+import com.example.user_recyclerview.viewmodel.ShowPostViewModelFactory
 
 class ShowPostFragment : Fragment() {
     private lateinit var postAdapter: PostAdapter
@@ -23,21 +27,17 @@ class ShowPostFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showPostViewModel = ViewModelProvider(this@ShowPostFragment).get(ShowPostViewModel::class.java)
+        showPostViewModel = ViewModelProvider(this@ShowPostFragment, ShowPostViewModelFactory(
+            PostRepository(RetrofitImplementation().retroObj(), UserDatabase.getDatabase(requireContext()).postDao())
+        )).get(ShowPostViewModel::class.java)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         postAdapter = PostAdapter()
         recyclerView.adapter = postAdapter
-        fetchPosts()
-    }
-    private fun fetchPosts(){
-        showPostViewModel.postAPICall{ posts ->
-            if(posts.isNotEmpty()){
-                postAdapter.setPostData(posts)
-            }else{
-                Toast.makeText(requireContext(),"Failure",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
+        showPostViewModel.observePost().observe(viewLifecycleOwner) { post ->
+           postAdapter.setPostData(post)
+        }
+
+    }
 }

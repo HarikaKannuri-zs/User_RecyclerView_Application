@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.model.local.User
+import com.example.user_recyclerview.model.local.userdata.User
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     private val users = mutableListOf<User>()

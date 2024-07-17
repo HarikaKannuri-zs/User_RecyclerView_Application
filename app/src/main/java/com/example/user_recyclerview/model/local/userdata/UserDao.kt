@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.model.local
+package com.example.user_recyclerview.model.local.userdata
 
 import androidx.room.Dao
 import androidx.room.Insert
