@@ -32,7 +32,7 @@ class ShowPostFragment : Fragment() {
         )).get(ShowPostViewModel::class.java)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        postAdapter = PostAdapter { postId ->
+        postAdapter = PostAdapter(requireContext()) { postId ->
             // perform like operation
             showPostViewModel.toggleFav(postId)
         }
