@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         makeAPICall()
     }
-    val api = RetrofitImplementation().retroObj()
-    fun makeAPICall() {
+    private val api = RetrofitImplementation().retroObj()
+    private fun makeAPICall() {
         api.getUser().enqueue(object :
             Callback<List<UserResponse>> {
             override fun onResponse(

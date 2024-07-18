@@ -24,8 +24,8 @@ class AddUserFragment : Fragment() {
         val userNameEditText: EditText = view.findViewById(R.id.userNameEditText)
         val userPhoneEditText: EditText = view.findViewById(R.id.userPhoneEditText)
         val userAddButton: Button = view.findViewById(R.id.userAddButton)
+        addUserViewModel = ViewModelProvider(this@AddUserFragment).get(AddUserViewModel::class.java)
         userAddButton.setOnClickListener {
-            addUserViewModel = ViewModelProvider(this@AddUserFragment).get(AddUserViewModel::class.java)
             val userId = userIdEditText.text.toString()
             val userName = userNameEditText.text.toString()
             val userPhone = userPhoneEditText.text.toString()
