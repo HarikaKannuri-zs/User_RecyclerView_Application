@@ -13,7 +13,7 @@ import com.example.user_recyclerview.R
 import com.example.user_recyclerview.viewmodel.ShowPostViewModel
 
 class ShowPostFragment : Fragment() {
-    private lateinit var postAdapter: PostAdapter
+    private val postAdapter: PostAdapter by lazy { PostAdapter() }
     private lateinit var showPostViewModel : ShowPostViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +25,10 @@ class ShowPostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showPostViewModel = ViewModelProvider(this@ShowPostFragment).get(ShowPostViewModel::class.java)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        postAdapter = PostAdapter()
-        recyclerView.adapter = postAdapter
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = postAdapter
+        }
         fetchPosts()
     }
     private fun fetchPosts(){
@@ -39,5 +40,4 @@ class ShowPostFragment : Fragment() {
             }
         }
     }
-
 }
