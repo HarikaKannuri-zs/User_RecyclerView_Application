@@ -8,8 +8,8 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.example.user_recyclerview"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 21
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -52,4 +52,7 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+}
+kapt {
+    correctErrorTypes = true
 }
