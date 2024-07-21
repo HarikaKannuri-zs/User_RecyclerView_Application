@@ -18,6 +18,7 @@ import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
 import com.example.user_recyclerview.viewmodel.ViewUserViewModel
+import com.example.user_recyclerview.viewmodel.ViewUserViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +39,9 @@ class ViewUserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewUserViewModel = ViewModelProvider(this@ViewUserFragment).get(ViewUserViewModel::class.java)
+        var userDao = UserDatabase.getDatabase(requireContext()).userDao()
+        val viewModelFactory = ViewUserViewModelFactory(userDao)
+        viewUserViewModel = ViewModelProvider(this, viewModelFactory).get(ViewUserViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         userRecyclerView.apply {
@@ -46,7 +49,6 @@ class ViewUserFragment : Fragment() {
             adapter = userAdapter
         }
         userDatabase = UserDatabase.getDatabase((activity as MainActivity).applicationContext)
-        userDao = userDatabase.userDao()
         addButton = view.findViewById(R.id.addButton)
         addButton.setOnClickListener {
             val addUserFragment = AddUserFragment()
@@ -66,7 +68,7 @@ class ViewUserFragment : Fragment() {
     }
     private fun setData() {
         CoroutineScope(Dispatchers.IO).launch {
-            val users = userDao.getAllUsers()
+            val users = viewUserViewModel.getAllUsers()
             withContext(Dispatchers.Main) {
                 userAdapter.setUserData(users)
             }
