@@ -32,11 +32,8 @@ class AddUserFragment : Fragment() {
         val userAddButton: Button = view.findViewById(R.id.userAddButton)
         val userDao = UserDatabase.getDatabase(requireContext()).userDao()
         val userRepository = UserRepository(userDao)
-
         val factory = AddUserViewModelFactory(userRepository)
-
         addUserViewModel = ViewModelProvider(this, factory).get(AddUserViewModel::class.java)
-
         userAddButton.setOnClickListener {
             val userId = userIdEditText.text.toString()
             val userName = userNameEditText.text.toString()

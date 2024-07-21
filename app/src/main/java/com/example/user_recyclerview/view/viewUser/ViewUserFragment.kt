@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.MainActivity
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.model.local.userdata.UserDao
 import com.example.user_recyclerview.model.local.UserDatabase
+import com.example.user_recyclerview.model.local.userdata.UserDao
 import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
@@ -30,14 +30,13 @@ class ViewUserFragment : Fragment() {
     private lateinit var userDatabase: UserDatabase
     private lateinit var userDao: UserDao
     private lateinit var postButton: Button
-    private  lateinit var viewUserViewModel: ViewUserViewModel
+    private lateinit var viewUserViewModel: ViewUserViewModel
     private val userAdapter: UserAdapter by lazy {
         UserAdapter()
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         var userDao = UserDatabase.getDatabase(requireContext()).userDao()
         val viewModelFactory = ViewUserViewModelFactory(userDao)
@@ -53,15 +52,14 @@ class ViewUserFragment : Fragment() {
         addButton.setOnClickListener {
             val addUserFragment = AddUserFragment()
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, addUserFragment)
-                .addToBackStack(null)
+                .replace(R.id.fragment_container_view, addUserFragment).addToBackStack(null)
                 .commit()
         }
         postButton = view.findViewById(R.id.postbutton)
-        postButton.setOnClickListener{
+        postButton.setOnClickListener {
             val showPostFragment = ShowPostFragment()
-            parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view,showPostFragment)
-                .addToBackStack(null)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, showPostFragment).addToBackStack(null)
                 .commit()
         }
         return view

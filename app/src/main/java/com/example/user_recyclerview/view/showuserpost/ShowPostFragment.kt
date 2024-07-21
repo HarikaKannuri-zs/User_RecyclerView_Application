@@ -32,10 +32,10 @@ class ShowPostFragment : Fragment() {
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         postAdapter = PostAdapter(requireContext()) { postId ->
-            // perform like operation
-            showPostViewModel.toggleFav(postId)
+            showPostViewModel.toggleFav(postId)   // perform like operation
         }
         recyclerView.adapter = postAdapter
+        showPostViewModel.fetchPost(postAdapter::setPostData)
         showPostViewModel.observePost().observe(viewLifecycleOwner) { post ->
            postAdapter.setPostData(post)
         }
