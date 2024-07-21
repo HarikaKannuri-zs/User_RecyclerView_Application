@@ -22,11 +22,8 @@ abstract class UserDatabase : RoomDatabase() {
         private var INSTANCE: UserDatabase? = null
         fun getDatabase(context: Context): UserDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    UserDatabase::class.java,
-                    "User Database"
-                ).allowMainThreadQueries()
+                val instance = Room.databaseBuilder(context.applicationContext, UserDatabase::class.java, "User Database")
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance

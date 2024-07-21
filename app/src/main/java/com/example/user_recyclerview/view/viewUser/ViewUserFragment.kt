@@ -18,6 +18,10 @@ import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
 import com.example.user_recyclerview.viewmodel.ViewUserViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button
@@ -61,8 +65,12 @@ class ViewUserFragment : Fragment() {
         return view
     }
     private fun setData() {
-        val users = userDao.getAllUsers()
-        userAdapter.setUserData(users)
+        CoroutineScope(Dispatchers.IO).launch {
+            val users = userDao.getAllUsers()
+            withContext(Dispatchers.Main) {
+                userAdapter.setUserData(users)
+            }
+        }
     }
     override fun onResume() {
         super.onResume()

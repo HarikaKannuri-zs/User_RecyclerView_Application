@@ -52,4 +52,5 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+    implementation(libs.kotlinx.coroutines.android)
 }
