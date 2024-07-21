@@ -14,29 +14,28 @@ import com.example.user_recyclerview.viewmodel.ShowPostViewModel
 
 class ShowPostFragment : Fragment() {
     private val postAdapter: PostAdapter by lazy { PostAdapter() }
-    private lateinit var showPostViewModel : ShowPostViewModel
+    private lateinit var showPostViewModel: ShowPostViewModel
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_show_post, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showPostViewModel = ViewModelProvider(this@ShowPostFragment).get(ShowPostViewModel::class.java)
-        val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
+        val recyclerView: RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = postAdapter
         }
         fetchPosts()
     }
-    private fun fetchPosts(){
-        showPostViewModel.postAPICall{ posts ->
-            if(posts.isNotEmpty()){
+    private fun fetchPosts() {
+        showPostViewModel.postAPICall { posts ->
+            if (posts.isNotEmpty()) {
                 postAdapter.setPostData(posts)
-            }else{
-                Toast.makeText(requireContext(),"Failure",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
             }
         }
     }

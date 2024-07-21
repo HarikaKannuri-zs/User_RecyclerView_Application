@@ -12,10 +12,9 @@ import com.example.user_recyclerview.R
 import com.example.user_recyclerview.viewmodel.AddUserViewModel
 
 class AddUserFragment : Fragment() {
-    private lateinit var addUserViewModel : AddUserViewModel
+    private lateinit var addUserViewModel: AddUserViewModel
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_user, container, false)
         val userIdEditText: EditText = view.findViewById(R.id.userIdEditText)
@@ -27,8 +26,8 @@ class AddUserFragment : Fragment() {
             val userId = userIdEditText.text.toString()
             val userName = userNameEditText.text.toString()
             val userPhone = userPhoneEditText.text.toString()
-            addUserViewModel.validateAddUser(userId,userName,userPhone)
-            parentFragmentManager.popBackStack()
+            val isUserAdded = addUserViewModel.validateAddUser(userId, userName, userPhone)
+            if(isUserAdded)parentFragmentManager.popBackStack()
         }
         return view
     }

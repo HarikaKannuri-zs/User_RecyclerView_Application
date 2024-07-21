@@ -21,30 +21,24 @@ class ViewUserFragment : Fragment() {
     private lateinit var viewUserViewModel: ViewUserViewModel
     private lateinit var userAdapter: UserAdapter
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
-        viewUserViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ViewUserViewModel::class.java)
+        viewUserViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        ).get(ViewUserViewModel::class.java)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         userAdapter = UserAdapter()
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.adapter = userAdapter
         addButton = view.findViewById(R.id.addButton)
         addButton.setOnClickListener {
-            val addUserFragment = AddUserFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, addUserFragment)
-                .addToBackStack(null)
-                .commit()
+            loadFragment(AddUserFragment())
         }
         val postButton: Button = view.findViewById(R.id.postbutton)
         postButton.setOnClickListener {
-            val showPostFragment = ShowPostFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, showPostFragment)
-                .addToBackStack(null)
-                .commit()
+            loadFragment(ShowPostFragment())
         }
         return view
     }
@@ -55,5 +49,9 @@ class ViewUserFragment : Fragment() {
     private fun setData() {
         val users = viewUserViewModel.getAllUsers
         userAdapter.setUserData(users)
+    }
+    private fun loadFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view, fragment)
+            .addToBackStack(null).commit()
     }
 }

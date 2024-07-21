@@ -11,11 +11,9 @@ import retrofit2.Response
 class ShowPostViewModel : ViewModel() {
     fun postAPICall(onResult: (List<UserPosts>) -> Unit) {
         val api = RetrofitImplementation().retroObj()
-        api.showPosts().enqueue(object :
-            Callback<List<UserPosts>> {
+        api.showPosts().enqueue(object : Callback<List<UserPosts>> {
             override fun onResponse(
-                call: Call<List<UserPosts>>,
-                response: Response<List<UserPosts>>
+                call: Call<List<UserPosts>>, response: Response<List<UserPosts>>
             ) {
                 if (response.isSuccessful) {
                     val posts = response.body() ?: emptyList()
@@ -25,7 +23,6 @@ class ShowPostViewModel : ViewModel() {
             override fun onFailure(call: Call<List<UserPosts>>, t: Throwable) {
                 Log.d("CHECK", "Failed to load the posts")
             }
-        }
-        )
+        })
     }
 }

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("users")
-    fun getUser() : Call<List<UserResponse>>
+    fun getUser(): Call<List<UserResponse>>
     @GET("photos")
-    fun showPosts() : Call<List<UserPosts>>
+    fun showPosts(): Call<List<UserPosts>>
 }

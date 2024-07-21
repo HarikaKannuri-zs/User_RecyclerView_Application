@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Failure", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Failure", Toast.LENGTH_SHORT).show()
             }

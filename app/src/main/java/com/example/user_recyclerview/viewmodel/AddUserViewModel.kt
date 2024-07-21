@@ -8,13 +8,15 @@ import com.example.user_recyclerview.model.local.UserDatabase
 
 class AddUserViewModel(application: Application) : AndroidViewModel(application) {
     private val userDao = UserDatabase.getDatabase(application).userDao()
-        fun validateAddUser(userId : String , userName: String,userPhone : String) =
+        fun validateAddUser(userId : String , userName: String,userPhone : String) : Boolean =
             if (userId.isNotBlank() && userName.isNotBlank() && userPhone.isNotBlank()) {
                 val user = User(userId, userName, userPhone)
                 insertUser(user)
                 Toast.makeText(getApplication(),"User added Successfully",Toast.LENGTH_SHORT).show()
+                true
             } else {
                 Toast.makeText(getApplication(),"Enter all the details",Toast.LENGTH_SHORT).show()
+                false
             }
         private fun insertUser(user: User) {
             userDao.insertUser(user)

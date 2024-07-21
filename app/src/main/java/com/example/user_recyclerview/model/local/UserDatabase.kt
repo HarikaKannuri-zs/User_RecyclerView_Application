@@ -6,8 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [User::class],
-    version = 1
+    entities = [User::class], version = 1
 )
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
@@ -17,9 +16,7 @@ abstract class UserDatabase : RoomDatabase() {
         fun getDatabase(context: Context): UserDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    UserDatabase::class.java,
-                    "User Database"
+                    context.applicationContext, UserDatabase::class.java, "User Database"
                 ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
