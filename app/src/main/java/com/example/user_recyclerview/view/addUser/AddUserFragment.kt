@@ -33,8 +33,7 @@ class AddUserFragment  : Fragment()  {
             if (userId.isNotBlank() && userName.isNotBlank() && userPhone.isNotBlank()) {
                 val user = User(userId, userName, userPhone)
                 addUserViewModel.insertUser(user)
-                Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "User added Successfully", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
             } else {
                 Toast.makeText(requireContext(), "Enter all the details", Toast.LENGTH_SHORT).show()

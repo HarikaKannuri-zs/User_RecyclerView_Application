@@ -25,8 +25,6 @@ class ShowPostViewModel @Inject constructor(
 
     fun fetchPost(onResult: (List<Posts>) -> Unit) {
         viewModelScope.launch {
-//            val posts = postRepository.fetchPosts()
-//            onResult(posts)
             postRepository.fetchPosts()
         }
     }

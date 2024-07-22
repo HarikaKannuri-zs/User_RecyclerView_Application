@@ -18,25 +18,20 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UserHiltModule {
-
     @Provides
     @Singleton
     fun provideUserDatabase(@ApplicationContext context: Context) : UserDatabase{
         return Room.databaseBuilder(context,UserDatabase::class.java,"user_database").build()
     }
-
     @Provides
     @Singleton
     fun provideUserDao(userDatabase: UserDatabase) : UserDao = userDatabase.userDao()
-
     @Provides
     @Singleton
     fun provideApiService() : ApiService = RetrofitImplementation().retroObj()
-
     @Provides
     @Singleton
     fun providePostDao(userDatabase: UserDatabase) : PostDao = userDatabase.postDao()
-
     @Provides
     @Singleton
     fun providePostRepository(apiService: ApiService , postDao: PostDao) : PostRepository = PostRepository(apiService,postDao)

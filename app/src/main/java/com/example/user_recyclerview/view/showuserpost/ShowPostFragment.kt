@@ -22,10 +22,10 @@ class ShowPostFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_show_post, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        showPostViewModel = ViewModelProvider(this).get(ShowPostViewModel::class.java)
         super.onViewCreated(view, savedInstanceState)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        showPostViewModel = ViewModelProvider(this).get(ShowPostViewModel::class.java)
         postAdapter = PostAdapter(requireContext()) { postId ->
             showPostViewModel.toggleFav(postId)   // perform like operation
         }
