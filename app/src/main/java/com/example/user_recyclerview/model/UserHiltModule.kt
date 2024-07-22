@@ -1,6 +1,7 @@
 package com.example.user_recyclerview.model
 
 import android.content.Context
+import androidx.room.Room
 import com.example.user_recyclerview.model.local.UserDatabase
 import com.example.user_recyclerview.model.local.userdata.UserDao
 import com.example.user_recyclerview.model.local.userposts.PostDao
@@ -20,7 +21,9 @@ object UserHiltModule {
 
     @Provides
     @Singleton
-    fun provideUserDatabase(@ApplicationContext context: Context) : UserDatabase = UserDatabase.getDatabase(context)
+    fun provideUserDatabase(@ApplicationContext context: Context) : UserDatabase{
+        return Room.databaseBuilder(context,UserDatabase::class.java,"user_database").build()
+    }
 
     @Provides
     @Singleton
