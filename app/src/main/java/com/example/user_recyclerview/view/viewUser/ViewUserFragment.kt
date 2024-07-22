@@ -18,10 +18,19 @@ import com.example.user_recyclerview.model.remote.RetrofitImplementation
 import com.example.user_recyclerview.model.repository.PostRepository
 import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
+import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
+import com.example.user_recyclerview.viewmodel.ViewUserViewModel
+import com.example.user_recyclerview.viewmodel.ViewUserViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import dagger.hilt.android.AndroidEntryPoint
 import com.example.user_recyclerview.view.adapter.UserAdapter
 import com.example.user_recyclerview.viewmodel.viewuser.ViewUserViewModel
 import com.example.user_recyclerview.viewmodel.viewuser.ViewUserViewModelFactory
 
+@AndroidEntryPoint
 class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var userRecyclerView: RecyclerView
@@ -35,7 +44,7 @@ class ViewUserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val userDao = UserDatabase.getDatabase(requireContext()).userDao()
+        var userDao = UserDatabase.getDatabase(requireContext()).userDao()
         val viewModelFactory = ViewUserViewModelFactory(userDao)
         viewUserViewModel = ViewModelProvider(this, viewModelFactory).get(ViewUserViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)

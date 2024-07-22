@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 android {
     namespace = "com.example.user_recyclerview"
@@ -49,10 +51,15 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
-    implementation(libs.logging.interceptor.v493)
+    implementation(libs.logging.interceptor)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v283)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+}
+kapt {
+    correctErrorTypes = true
 }
