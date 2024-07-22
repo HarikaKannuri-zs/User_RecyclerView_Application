@@ -36,7 +36,7 @@ class ViewUserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        var userDao = UserDatabase.getDatabase(requireContext()).userDao()
+        val userDao = UserDatabase.getDatabase(requireContext()).userDao()
         val viewModelFactory = ViewUserViewModelFactory(userDao)
         viewUserViewModel = ViewModelProvider(this, viewModelFactory).get(ViewUserViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)

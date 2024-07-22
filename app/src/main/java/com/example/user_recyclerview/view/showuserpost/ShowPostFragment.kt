@@ -35,8 +35,8 @@ class ShowPostFragment : Fragment() {
             showPostViewModel.toggleFav(postId)   // perform like operation
         }
         recyclerView.adapter = postAdapter
-        showPostViewModel.fetchPost(postAdapter::setPostData)
-        showPostViewModel.observePost().observe(viewLifecycleOwner) { post ->
+        showPostViewModel.fetchPost()
+        showPostViewModel.posts.observe(viewLifecycleOwner) { post ->
            postAdapter.setPostData(post)
         }
     }

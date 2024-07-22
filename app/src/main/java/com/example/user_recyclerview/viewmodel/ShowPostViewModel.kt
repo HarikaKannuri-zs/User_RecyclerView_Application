@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 class ShowPostViewModel(
     private val postRepository: PostRepository
 ) : ViewModel() {
-    fun fetchPost(onResult: (List<Posts>) -> Unit) {
+    val posts : LiveData<List<Posts>> = postRepository.observePosts()
+    fun fetchPost() {
         viewModelScope.launch {
-            val posts = postRepository.fetchPosts()
-            onResult(posts)
+            postRepository.fetchPosts()
         }
     }
-    fun observePost(): LiveData<List<Posts>> = postRepository.observePosts()
+
     fun toggleFav(postId: Int) {
         viewModelScope.launch {
             postRepository.toggleFav(postId)
