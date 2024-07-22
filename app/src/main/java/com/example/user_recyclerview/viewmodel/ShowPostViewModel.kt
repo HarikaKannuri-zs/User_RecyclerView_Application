@@ -8,8 +8,9 @@ import com.example.user_recyclerview.model.repository.PostRepository
 import kotlinx.coroutines.launch
 
 class ShowPostViewModel(
-    private val postRepository: PostRepository) : ViewModel() {
-    fun fetchPost(onResult: (List<Posts>) -> Unit ){
+    private val postRepository: PostRepository
+) : ViewModel() {
+    fun fetchPost(onResult: (List<Posts>) -> Unit) {
         viewModelScope.launch {
             val posts = postRepository.fetchPosts()
             onResult(posts)
