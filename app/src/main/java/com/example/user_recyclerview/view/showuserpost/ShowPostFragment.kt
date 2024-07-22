@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.R
@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 class ShowPostFragment : Fragment() {
     private lateinit var postAdapter: PostAdapter
-    private  lateinit var showPostViewModel : ShowPostViewModel
+    private val showPostViewModel: ShowPostViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,14 +22,15 @@ class ShowPostFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_show_post, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        showPostViewModel = ViewModelProvider(this).get(ShowPostViewModel::class.java)
         super.onViewCreated(view, savedInstanceState)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context)
         postAdapter = PostAdapter(requireContext()) { postId ->
             showPostViewModel.toggleFav(postId)   // perform like operation
         }
-        recyclerView.adapter = postAdapter
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = postAdapter
+        }
         showPostViewModel.fetchPosts()
         showPostViewModel.observePost().observe(viewLifecycleOwner) { post ->
            postAdapter.setPostData(post)

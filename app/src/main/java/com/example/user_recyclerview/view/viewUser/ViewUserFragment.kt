@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +34,7 @@ class ViewUserFragment : Fragment() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userDatabase: UserDatabase
     private lateinit var postButton: Button
-    private lateinit var viewUserViewModel: ViewUserViewModel
+    private val viewUserViewModel : ViewUserViewModel by viewModels()
     private val userAdapter: UserAdapter by lazy {
         UserAdapter()
     }
@@ -43,7 +42,6 @@ class ViewUserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        viewUserViewModel = ViewModelProvider(this).get(ViewUserViewModel::class.java)
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         userRecyclerView.apply {
