@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.MainActivity
 import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.UserDatabase
-import com.example.user_recyclerview.model.local.userdata.UserDao
 import com.example.user_recyclerview.view.addUser.AddUserFragment
 import com.example.user_recyclerview.view.showuserpost.ShowPostFragment
 import com.example.user_recyclerview.view.viewUser.adapter.UserAdapter
@@ -28,7 +27,6 @@ class ViewUserFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userDatabase: UserDatabase
-    private lateinit var userDao: UserDao
     private lateinit var postButton: Button
     private lateinit var viewUserViewModel: ViewUserViewModel
     private val userAdapter: UserAdapter by lazy {
