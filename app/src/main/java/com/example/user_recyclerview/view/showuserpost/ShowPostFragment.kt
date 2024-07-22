@@ -27,9 +27,9 @@ class ShowPostFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        showPostViewModel = ViewModelProvider(this@ShowPostFragment, ShowPostViewModelFactory(
-//            PostRepository(RetrofitImplementation().retroObj(), UserDatabase.getDatabase(requireContext()).postDao())
-//        )).get(ShowPostViewModel::class.java)
+        showPostViewModel = ViewModelProvider(this@ShowPostFragment, ShowPostViewModelFactory(
+            PostRepository(RetrofitImplementation().retroObj(), UserDatabase.getDatabase(requireContext()).postDao())
+        )).get(ShowPostViewModel::class.java)
         val recyclerView : RecyclerView = view.findViewById(R.id.postRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         postAdapter = PostAdapter(requireContext()) { postId ->
