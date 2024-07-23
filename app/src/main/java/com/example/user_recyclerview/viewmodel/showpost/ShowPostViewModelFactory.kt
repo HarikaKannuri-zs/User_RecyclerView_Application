@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.viewmodel
+package com.example.user_recyclerview.viewmodel.showpost
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
+    implementation(libs.logging.interceptor.v493)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
     implementation(libs.kotlinx.coroutines.android)
