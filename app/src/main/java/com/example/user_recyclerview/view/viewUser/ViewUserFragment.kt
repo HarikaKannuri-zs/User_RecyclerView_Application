@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,7 @@ class ViewUserFragment : Fragment() {
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
         val deleteUser : (String) -> Unit = {
             userId -> viewUserViewModel.deleteUser(userId)
+            Toast.makeText(context,"User Deleted",Toast.LENGTH_SHORT).show()
         }
         userAdapter = UserAdapter(deleteUser)
         userRecyclerView.apply {
