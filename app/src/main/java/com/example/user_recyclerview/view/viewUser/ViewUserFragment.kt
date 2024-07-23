@@ -25,10 +25,8 @@ class ViewUserFragment : Fragment() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userDatabase: UserDatabase
     private lateinit var postButton: Button
+    private lateinit var userAdapter: UserAdapter
     private val viewUserViewModel: ViewUserViewModel by viewModels()
-    private val userAdapter: UserAdapter by lazy {
-        UserAdapter()
-    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -36,6 +34,10 @@ class ViewUserFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_view_user, container, false)
         userRecyclerView = view.findViewById(R.id.userRecyclerView)
+        val deleteUser : (String) -> Unit = {
+            userId -> viewUserViewModel.deleteUser(userId)
+        }
+        userAdapter = UserAdapter(deleteUser)
         userRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = userAdapter
@@ -51,12 +53,10 @@ class ViewUserFragment : Fragment() {
         }
         return view
     }
-
     private fun loadFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view, fragment)
             .addToBackStack(null).commit()
     }
-
     override fun onResume() {
         super.onResume()
         viewUserViewModel.users.observe(viewLifecycleOwner) { users ->

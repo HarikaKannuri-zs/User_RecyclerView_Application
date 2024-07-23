@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.user_recyclerview.R
 import androidx.activity.viewModels
-import com.example.user_recyclerview.model.remote.RetrofitImplementation
 import com.example.user_recyclerview.viewmodel.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
