@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.view.showuserpost
+package com.example.user_recyclerview.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

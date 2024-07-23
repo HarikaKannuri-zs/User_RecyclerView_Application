@@ -1,4 +1,4 @@
-package com.example.user_recyclerview.view.viewUser.adapter
+package com.example.user_recyclerview.view.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.userdata.User
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    private val users = mutableListOf<User>()
+    private var users = mutableListOf<User>()
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val userNameTextView: TextView = itemView.findViewById(R.id.userNameViewText)
         val userIdTextView: TextView = itemView.findViewById(R.id.userIdViewText)
@@ -31,8 +31,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     }
     @SuppressLint("NotifyDataSetChanged")
     fun setUserData(newUsers: List<User>) {
-        users.clear()
-        users.addAll(newUsers)
+        users = newUsers.toMutableList()
         notifyDataSetChanged()
     }
 }
