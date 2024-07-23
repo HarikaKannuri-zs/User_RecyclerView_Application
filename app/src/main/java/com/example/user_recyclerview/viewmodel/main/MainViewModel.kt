@@ -11,10 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val apiService: ApiService
-): ViewModel(
-) {
+class MainViewModel @Inject constructor(private val apiService: ApiService): ViewModel() {
     private val _showToastLD = MutableLiveData<String>()
     val showToastLD: LiveData<String> = _showToastLD
     fun fetchUsers() = viewModelScope.launch(Dispatchers.IO) {
