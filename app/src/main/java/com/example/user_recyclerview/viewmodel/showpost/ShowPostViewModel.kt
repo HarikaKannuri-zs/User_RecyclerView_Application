@@ -9,21 +9,11 @@ import com.example.user_recyclerview.model.repository.PostRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
-class ShowPostViewModel(
-    private val postRepository: PostRepository
-) : ViewModel() {
-    val posts : LiveData<List<Posts>> = postRepository.observePost()
-    fun fetchPost() {
-        viewModelScope.launch(Dispatchers.IO) {
-            postRepository.fetchPosts()
 @HiltViewModel
 class ShowPostViewModel @Inject constructor(
     private val postRepository: PostRepository) : ViewModel() {
-
-    fun fetchPost(onResult: (List<Posts>) -> Unit) {
+    val posts : LiveData<List<Posts>> = postRepository.observePosts()
+    fun fetchPosts() {
         viewModelScope.launch {
             postRepository.fetchPosts()
         }

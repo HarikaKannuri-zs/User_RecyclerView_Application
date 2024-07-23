@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.user_recyclerview.R
-import com.example.user_recyclerview.viewmodel.ShowPostViewModel
+import com.example.user_recyclerview.viewmodel.showpost.ShowPostViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.user_recyclerview.view.adapter.PostAdapter
 
+@AndroidEntryPoint
 class ShowPostFragment : Fragment() {
     private lateinit var postAdapter: PostAdapter
     private val showPostViewModel: ShowPostViewModel by viewModels()

@@ -8,6 +8,7 @@ import com.example.user_recyclerview.model.local.userposts.PostDao
 import com.example.user_recyclerview.model.remote.ApiService
 import com.example.user_recyclerview.model.remote.RetrofitImplementation
 import com.example.user_recyclerview.model.repository.PostRepository
+import com.example.user_recyclerview.model.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,4 +36,8 @@ object UserHiltModule {
     @Provides
     @Singleton
     fun providePostRepository(apiService: ApiService , postDao: PostDao) : PostRepository = PostRepository(apiService,postDao)
+    @Provides
+    @Singleton
+    fun provideUserRepository(userDao : UserDao) : UserRepository = UserRepository(userDao)
+
 }

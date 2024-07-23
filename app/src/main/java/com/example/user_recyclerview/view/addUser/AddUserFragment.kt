@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.user_recyclerview.R
 import com.example.user_recyclerview.model.local.userdata.User
-import com.example.user_recyclerview.viewmodel.AddUserViewModel
+import com.example.user_recyclerview.viewmodel.adduser.AddUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

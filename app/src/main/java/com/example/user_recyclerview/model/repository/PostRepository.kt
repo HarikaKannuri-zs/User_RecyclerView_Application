@@ -1,6 +1,5 @@
 package com.example.user_recyclerview.model.repository
 
-import androidx.lifecycle.LiveData
 import com.example.user_recyclerview.model.local.userposts.PostDao
 import com.example.user_recyclerview.model.local.userposts.Posts
 import com.example.user_recyclerview.model.remote.ApiService
@@ -22,9 +21,11 @@ class PostRepository @Inject constructor(private val apiService: ApiService, pri
             }
         }
     }
+    fun observePosts() = postDao.showPost()
     suspend fun toggleFav(postId: Int) {
         withContext(Dispatchers.IO) {
             postDao.toggleFav(postId)
         }
     }
+
 }
