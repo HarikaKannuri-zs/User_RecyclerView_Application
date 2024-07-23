@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.user_recyclerview.R
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import com.example.user_recyclerview.model.remote.RetrofitImplementation
 import com.example.user_recyclerview.viewmodel.main.MainViewModel
-import com.example.user_recyclerview.viewmodel.main.MainViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val api = RetrofitImplementation().retroObj()
-    private lateinit var  mainActivityViewModel : MainViewModel
+    private val mainActivityViewModel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val factory = MainViewModelFactory(api)
-        mainActivityViewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
         observeMainActivityViewModel()
         mainActivityViewModel.fetchUsers()
     }
